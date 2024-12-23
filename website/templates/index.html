@@ -1,0 +1,52 @@
+{% extends "index.html" %} 
+{% block title %}Index{% endblock %} 
+{% block content %}
+
+
+<div align="center" class="input-block">
+  <p class="links">Notes</p>
+  <ul class="data-list" id="notes">
+    {% for note in user.notes %}
+    <li class="data-list">
+      <a href="{{ note.data }}" target="_blank" rel="noopener noreferrer">{{ note.data }}</a>
+      <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+
+<div align="center" class="link-container">
+  <div class="profile">
+    <p align="center" class="profile-title">Profile Information</p>
+    <ul align="center" class="list-group list-group-flush" id="users">
+      <li class="profile-table">
+        <div class="profile-row">
+          <div class="profile-label">Name:</div>
+          <div class="profile-data">{{ user.first_name }}</div>
+        </div>
+        <div class="profile-row">
+          <div class="profile-label">Email:</div>
+          <div class="profile-data">{{ user.email }}</div>
+        </div>
+        <div class="profile-row">
+          <div class="profile-label">ID:</div>
+          <div class="profile-data">{{ user.id }}</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="button-block">
+  <form method="POST">
+    <textarea name="note" id="note" class="form-control" required></textarea>
+    <br />
+    <div align="center">
+      <button type="submit" class="btn btn-primary">Add Note</button>
+    </div>
+  </form>
+</div>
+{% endblock %}
